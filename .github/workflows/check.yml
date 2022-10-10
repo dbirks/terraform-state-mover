@@ -23,7 +23,7 @@ jobs:
         run: wget https://releases.hashicorp.com/terraform/1.2.2/terraform_1.2.2_linux_amd64.zip -O /tmp/terraform.zip && sudo unzip -o -d /usr/local/bin/ /tmp/terraform.zip
 
       - name: Check out code into the Go module directory
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3.2.0
@@ -57,7 +57,7 @@ jobs:
         run: wget https://releases.hashicorp.com/terraform/0.11.15/terraform_0.11.15_linux_amd64.zip -O /tmp/terraform.zip && sudo unzip -o -d /usr/local/bin/ /tmp/terraform.zip
 
       - name: Check out code into the Go module directory
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Get dependencies
         run: go get -v -t -d ./...
@@ -196,7 +196,7 @@ jobs:
         run: wget https://releases.hashicorp.com/terraform/${{ matrix.terraform }}/terraform_${{ matrix.terraform }}_linux_amd64.zip -O /tmp/terraform.zip && sudo unzip -o -d /usr/local/bin/ /tmp/terraform.zip
 
       - name: Check out code into the Go module directory
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Get dependencies
         run: go get -v -t -d ./...
