@@ -18,7 +18,7 @@ brew install mbode/tap/terraform-state-mover
 Alternatively, get a pre-built binary from the [latest release](https://github.com/mbode/terraform-state-mover/releases/latest) or build it yourself using
 
 ```bash
-go get github.com/mbode/terraform-state-mover
+go install github.com/mbode/terraform-state-mover@latest
 ```
 
 ## Usage
