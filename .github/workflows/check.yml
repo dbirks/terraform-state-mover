@@ -203,6 +203,8 @@ jobs:
 
       - name: Test
         run: go test -v ./...
+        env:
+          TF_CLI_ARGS: -verify-plugins=false
 
       - name: Build
         run: go build -v .
