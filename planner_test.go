@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io/ioutil"
 	"os"
 	"reflect"
 	"testing"
@@ -12,7 +13,7 @@ func TestCreate(t *testing.T) {
 
 	content := `resource "null_resource" "first" {}
 resource "null_resource" "second" {}`
-	if err := os.WriteFile(dir+"/main.tf", []byte(content), 0644); err != nil {
+	if err := ioutil.WriteFile(dir+"/main.tf", []byte(content), 0644); err != nil {
 		t.Fatal(err)
 	}
 
@@ -41,7 +42,7 @@ func TestDelete(t *testing.T) {
 resource "null_resource" "second" {}`
 	prepareState(dir, content, t)
 
-	if err := os.WriteFile(dir+"/main.tf", []byte("\n"), 0644); err != nil {
+	if err := ioutil.WriteFile(dir+"/main.tf", []byte("\n"), 0644); err != nil {
 		t.Fatal(err)
 	}
 
@@ -66,7 +67,7 @@ func TestNoOp(t *testing.T) {
 resource "null_resource" "second" {}`
 	prepareState(dir, content, t)
 
-	if err := os.WriteFile(dir+"/main.tf", []byte(content), 0644); err != nil {
+	if err := ioutil.WriteFile(dir+"/main.tf", []byte(content), 0644); err != nil {
 		t.Fatal(err)
 	}
 
@@ -114,7 +115,7 @@ func TestFilter(t *testing.T) {
 }
 
 func createDir(t *testing.T) string {
-	dir, err := os.MkdirTemp("", t.Name())
+	dir, err := ioutil.TempDir("", t.Name())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -126,7 +127,7 @@ func createDir(t *testing.T) string {
 }
 
 func prepareState(dir string, content string, t *testing.T) {
-	if err := os.WriteFile(dir+"/main.tf", []byte(content), 0644); err != nil {
+	if err := ioutil.WriteFile(dir+"/main.tf", []byte(content), 0644); err != nil {
 		t.Fatal(err)
 	}
 	if err := terraformExec(config{}, true, []string{}, "init"); err != nil {
