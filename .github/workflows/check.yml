@@ -205,7 +205,7 @@ jobs:
       # https://discuss.hashicorp.com/t/terraform-updates-for-hcsec-2021-12/23570
       - name: Test
         run: |
-          case ${{ matrix.terraform }} in 
+          case ${{ matrix.terraform }} in
 
             # For the old versions of terraform that are patched, run the tests as normal.
             0.11.15 | 0.12.31 | 0.13.7 )
