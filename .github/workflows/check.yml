@@ -39,7 +39,7 @@ jobs:
       - name: Coverage
         uses: codecov/codecov-action@v3
         with:
-          file: ./coverage.txt
+          files: ./coverage.txt
 
   pre012:
     name: pre012
