@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"reflect"
@@ -12,14 +11,13 @@ import (
 )
 
 func changes(cfg config, planArgs []string) ([]ResChange, error) {
-	tfPlan, err := ioutil.TempFile("", "tfplan")
+	tfPlan, err := os.MkdirTemp("", "tfplan")
 	if err != nil {
 		return nil, err
 	}
-	tfPlanName := tfPlan.Name()
-	defer os.Remove(tfPlanName)
+	defer os.Remove(tfPlan)
 
-	if err := terraformExec(cfg, true, planArgs, "plan", "-out="+tfPlanName); err != nil {
+	if err := terraformExec(cfg, true, planArgs, "plan", "-out="+tfPlan); err != nil {
 		return nil, err
 	}
 
@@ -28,7 +26,7 @@ func changes(cfg config, planArgs []string) ([]ResChange, error) {
 		return nil, err
 	}
 	if isPre012 {
-		cmd := exec.Command("terraform", "show", "-no-color", tfPlanName)
+		cmd := exec.Command("terraform", "show", "-no-color", tfPlan)
 		var stdout bytes.Buffer
 		cmd.Stdout = &stdout
 		cmd.Stderr = os.Stderr
@@ -49,7 +47,7 @@ func changes(cfg config, planArgs []string) ([]ResChange, error) {
 		}
 		return changes, nil
 	}
-	cmd := exec.Command("terraform", "show", "-json", tfPlanName)
+	cmd := exec.Command("terraform", "show", "-json", tfPlan)
 	var stdout bytes.Buffer
 	cmd.Stdout = &stdout
 	cmd.Stderr = os.Stderr
