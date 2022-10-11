@@ -204,16 +204,7 @@ jobs:
       - name: Test
         run: |
           case ${{ matrix.terraform }} in 
-            0.10.* )
-              TF_CLI_ARGS_init="-verify-plugins=false" go test -v ./...
-              ;;
-            0.11.* )
-              TF_CLI_ARGS_init="-verify-plugins=false" go test -v ./...
-              ;;
-            0.12.* )
-              TF_CLI_ARGS_init="-verify-plugins=false" go test -v ./...
-              ;;
-            0.13.* )
+            0.10.* | 0.11.* | 0.12.* | 0.13.* )
               TF_CLI_ARGS_init="-verify-plugins=false" go test -v ./...
               ;;
             * )
