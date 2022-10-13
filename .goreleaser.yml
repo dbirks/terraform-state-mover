@@ -21,9 +21,9 @@ snapshot:
   name_template: "{{ .Tag }}-next"
 brews:
   - tap:
-      owner: mbode
+      owner: dbirks
       name: homebrew-tap
-    homepage: "https://github.com/mbode/terraform-state-mover"
+    homepage: "https://github.com/dbirks/terraform-state-mover"
     description: "Refactoring Terraform code has never been easier"
     folder: Formula
     test: |
