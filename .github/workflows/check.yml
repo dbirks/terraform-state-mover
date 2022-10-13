@@ -39,7 +39,6 @@ jobs:
       - name: Build a snapshot with GoReleaser
         uses: goreleaser/goreleaser-action@v3
         with:
-          version: latest
           args: build --snapshot
 
   pre012:
