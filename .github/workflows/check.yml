@@ -37,7 +37,7 @@ jobs:
           files: ./coverage.txt
 
       - name: Build a snapshot with GoReleaser
-        uses: goreleaser/goreleaser-action@v3
+        uses: goreleaser/goreleaser-action@v6
         with:
           args: build --snapshot
 
