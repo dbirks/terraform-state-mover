@@ -1,9 +1,9 @@
 module github.com/mbode/terraform-state-mover
 
-go 1.19
+go 1.21
 
 require (
-	github.com/agnivade/levenshtein v1.1.1
+	github.com/agnivade/levenshtein v1.2.1
 	github.com/hashicorp/go-version v1.3.0
 	github.com/manifoldco/promptui v0.9.0
 	github.com/urfave/cli/v2 v2.3.0
